@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+ <!-- Hero/Intro Slider Start -->
+ <div class="section">
+    <div class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1">
+        <!-- Hero slider Active -->
+        <div class="swiper-wrapper">
+            <!-- Single slider item -->
+            <div class="hero-slide-item swiper-slide" style="background-color:#8eb9e4; height: 400px;">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <div class="hero-slide-image">
+                                <img src="{% static 'assets/images/hero/inner-img/hero-1-1.png' %}" alt="Hero Image 1" class="img-fluid" style="max-height: 300px;">
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center text-md-start">
+                            <div class="hero-slide-content">
+                                <h2 class="title-1">Easy Your Life <br>For Smart Device</h2>
+                                <span class="price">
+                                    <span class="mini-title">Only</span>
+                                    <span class="amount">₹9999</span>
+                                </span>
+                                <a href="{% url 'products' %}" class="btn btn-primary text-capitalize mt-3">Shop All Devices</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single slider item 2 -->
+            <div class="hero-slide-item swiper-slide" style="background-color: #8eb9e4; height: 400px;">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <div class="hero-slide-image">
+
+                                <img src="{% static 'assets/images/hero/inner-img/lap.avif' %}" alt="Hero Image 2" class="img-fluid" style="max-height: 300px;">
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center text-md-start">
+                            <div class="hero-slide-content">
+                                <h2 class="title-1">Get Your  <br>Gaming Laptop</h2>
+                                <span class="price">
+                                    <span class="mini-title">From</span>
+                                    <span class="amount"> ₹77999</span>
+                                </span>
+                                <a href="{% url 'products' %}" class="btn btn-primary text-capitalize mt-3">Explore Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single slider item 3 -->
+            <div class="hero-slide-item swiper-slide" style="background-color:#8eb9e4; height: 400px;">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <div class="hero-slide-image">
+                                <img src="{% static 'assets/images/hero/inner-img/boat1.webp' %}" alt="Hero Image 3" class="img-fluid" style="max-height: 300px;">
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center text-md-start">
+                            <div class="hero-slide-content">
+                                <h2 class="title-1">Innovative  <br>Boat Watch</h2>
+                                <span class="price">
+                                    <span class="mini-title">Starting at</span>
+                                    <span class="amount"> ₹2799</span>
+                                </span>
+                                <a href="{% url 'products' %}" class="btn btn-primary text-capitalize mt-3">Discover More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-buttons">
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Hero/Intro Slider End -->
+<!-- Banner Area Start -->
+
+<!-- Banner Area End -->
+<!-- Product Area Start -->
+ <br>
+
+<div class="product-area pb-100px">
+    <div class="container">
+        <!-- Section Title & Tab Start -->
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title text-center">
+                    <br>
+                    <h2 class="title"> Products</h2>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Section Title & Tab End -->
+        <div class="row">
+            <div class="col">
+                <div class="row mb-n-30px">
+                   {% for prod in product %}
+                   <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                        <!-- Single Prodect -->
+                        <div class="product">
+                            <span class="badges">
+                                <span class="new">{{prod.condition}}</span>
+                            </span>
+                            <div class="thumb">
+                                <a href="/product_details/{{prod.id}}" class="image">
+                                    <img src="{{prod.image}}" alt="Product" />
+                                    
+                                </a>
+                            </div>
+                            <div class="content">
+                                <br>
+                                <span class="category"><a href="/product_details/{{prod.id}}">{{prod.categories}}</a></span>
+                                <h5 class="title"><a href="/product_details/{{prod.id}}">{{prod.name | truncatewords:4}}
+                                    </a>
+                                </h5>
+                                <span class="price">
+                                    <span class="new">{{prod.price}}</span>
+                                </span>
+                            </div>
+                            <div class="actions">
+                                        <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart-{{forloop.counter}}"><i
+                                            class="pe-7s-shopbag"></i></button>
+                                       
+                                        
+                                       
+                                    </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
